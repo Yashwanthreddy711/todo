@@ -13,12 +13,11 @@ function App() {
   const [theme, setTheme] = useState('white');
   const [font, setFont] = useState('black');
 
-  function handleAddtoList(e) {
+  function handleAddtoList() {
     let trimmedData = data;
-    if (data.length > 30) {
-      trimmedData = data.substring(0, 30) + '...';
-    }
-
+   if(data.length>130){
+    trimmedData=data.substring(0,130)+'...';
+   }
     if (data.length > 0) {
       dispatch(addtoList(trimmedData));
       setData('');
@@ -67,11 +66,11 @@ function App() {
           />
          
         </div>
-        <div  className="flex flex-col flex-wrap justify-center gap-4 md:flex-row">
+        <div className="flex flex-col flex-wrap justify-center gap-4 md:flex-row">
           {TodoList.length > 0 ? (
             TodoList.map((item, index) => (
-              <div key={index} className="relative flex h-40 p-6 border-2 border-gray-200 rounded-md md:w-60" style={{ background: item.color }}>
-                <h1 className="text-center">{item.text}</h1>
+              <div key={index} className="relative flex w-full h-40 p-5 border-2 border-gray-200 rounded-md md:max-w-60" style={{ background: item.color }}>
+                <h1 className="text-center break-all">{item.text}</h1>
                 <div className="absolute top-0 right-0 mt-2 mr-2 transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-100">
                   <RiDeleteBin6Line
                     onClick={() => handleDelete(item.id)}
