@@ -29,6 +29,11 @@ function App() {
   function handleDelete(id) {
     dispatch(deleteFromList(id));
   }
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      handleAddtoList();
+    }
+  }
 
   function handleTheme() {
     setSelect(!select);
@@ -56,24 +61,17 @@ function App() {
         <div style={{color:font}} className="flex items-center justify-center w-full h-auto gap-2 m-4 md:p-8">
           <input
             onChange={(e) => setData(e.target.value)}
+            onKeyDown={handleKeyDown}
             value={data}
             placeholder="Enter your todo"
             className="border-2 border-gray-200 outline-none w-full md:w-[60%] h-10 p-2 md:p-4 rounded-md text-gray-400"
           />
-          <AiOutlinePlus style={{background:'none'}} 
-            onClick={handleAddtoList}
-            styles={{
-              background: theme,
-              color: font,
-              borderColor: font,
-            }}
-            className={`p-1 text-3xl transition-all ease-linear border-2 border-${font} rounded-md cursor-pointer `}
-          />
+         
         </div>
         <div  className="flex flex-col flex-wrap justify-center gap-4 md:flex-row">
           {TodoList.length > 0 ? (
             TodoList.map((item, index) => (
-              <div key={index} className="relative flex items-center justify-center h-40 border-2 border-gray-200 rounded-md md:w-60" style={{ background: item.color }}>
+              <div key={index} className="relative flex h-40 p-6 border-2 border-gray-200 rounded-md md:w-60" style={{ background: item.color }}>
                 <h1 className="text-center">{item.text}</h1>
                 <div className="absolute top-0 right-0 mt-2 mr-2 transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-100">
                   <RiDeleteBin6Line
