@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoList, deleteFromList } from "./redux/Slices/TodoSlice";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AiOutlinePlus } from "react-icons/ai";
 import { CiDark } from "react-icons/ci";
 import { MdOutlineLightMode } from "react-icons/md";
 
